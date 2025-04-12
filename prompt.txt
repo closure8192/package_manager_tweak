@@ -1,0 +1,5 @@
+hey there, make my md file into an interactive HTML with menu of each tool (like pip, npm) on the right side of the page for easy navigation; for command or code, use the card style in the image I provided.
+
+when generating, use the exact text from md, no change to them in HTML;
+
+add a copy button for code/cmd snippet;

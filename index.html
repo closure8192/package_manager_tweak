@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Manager Source Mirror</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .content {
+            flex: 1;
+            padding: 2rem;
+            max-width: 75%;
+        }
+        
+        .sidebar {
+            width: 250px;
+            background-color: #f8f9fa;
+            padding: 2rem 1rem;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            border-left: 1px solid #e9ecef;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eaecef;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2 {
+            color: #3498db;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eaecef;
+        }
+        
+        h3 {
+            color: #2c3e50;
+        }
+        
+        .code-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            padding: 1rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            overflow-x: auto;
+            position: relative;
+        }
+        
+        .code-card pre {
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+        }
+        
+        .code-card code {
+            color: #e83e8c;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .copy-btn:hover {
+            background-color: #e9ecef;
+        }
+        
+        .copy-btn.copied {
+            background-color: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+        
+        .nav-menu {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .nav-menu li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .nav-menu a {
+            color: #3498db;
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        
+        .nav-menu a:hover {
+            background-color: #e9ecef;
+        }
+        
+        .nav-menu .active {
+            background-color: #e9ecef;
+            font-weight: bold;
+        }
+        
+        .nav-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            color: #2c3e50;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .content {
+                max-width: 100%;
+                order: 2;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                order: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>Package Manager Source Mirror</h1>
+            
+            <section id="introduction">
+                <p>Below is a concise, step-by-step guideline for configuring each package manager tool (including the original ones—pip, npm, Docker, RubyGems, Maven Central, Go Modules, Crates.io, Homebrew, Android SDK, Gradle—and the newly added ones—apt, yum/dnf, Composer, NuGet, pacman, Helm, Conan) to work behind the GFW in mainland China without a VPN. Each section uses a primary mirror, with a secondary mirror noted at the end, formatted in Markdown.</p>
+            </section>
+            
+            <section id="pip">
+                <h2>pip</h2>
+                <p>Primary Mirror: Tsinghua University</p>
+                
+                <p>Configure pip to use Tsinghua's mirror:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
+                </div>
+                
+                <p>Set trusted host to avoid SSL issues:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>pip config set global.trusted-host pypi.tuna.tsinghua.edu.cn</code></pre>
+                </div>
+                
+                <p>Install packages:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>pip install package-name</code></pre>
+                </div>
+                
+                <p>Secondary Mirror: Aliyun (https://mirrors.aliyun.com/pypi/simple/)</p>
+            </section>
+            
+            <section id="npm">
+                <h2>npm</h2>
+                <p>Primary Mirror: Taobao</p>
+                
+                <p>Set npm to use Taobao's mirror:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>npm config set registry https://registry.npm.taobao.org/</code></pre>
+                </div>
+                
+                <p>Install packages:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>npm install package-name</code></pre>
+                </div>
+                
+                <p>Secondary Mirror: Tencent (https://mirrors.tencent.com/npm/)</p>
+            </section>
+            
+            <section id="docker">
+                <h2>Docker</h2>
+                <p>Primary Mirror: DaoCloud</p>
+                
+                <p>Edit /etc/docker/daemon.json:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>{
+  "registry-mirrors": ["https://docker.m.daocloud.io"]
+}</code></pre>
+                </div>
+                
+                <p>Reload and restart Docker:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>sudo systemctl daemon-reload
+sudo systemctl restart docker</code></pre>
+                </div>
+                
+                <p>Run Docker commands:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>docker run -it ubuntu:latest</code></pre>
+                </div>
+                
+                <p>Secondary Mirror: USTC (https://docker.mirrors.ustc.edu.cn)</p>
+            </section>
+            
+            <section id="rubygems">
+                <h2>RubyGems</h2>
+                <p>Primary Mirror: Ruby China</p>
+                
+                <p>Replace the default source:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/</code></pre>
+                </div>
+                
+                <p>Install gems:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>gem install package-name</code></pre>
+                </div>
+                
+                <p>Secondary Mirror: Tsinghua (https://mirrors.tuna.tsinghua.edu.cn/rubygems/)</p>
+            </section>
+            
+            <section id="maven">
+                <h2>Maven Central</h2>
+                <p>Primary Mirror: Aliyun</p>
+                
+                <p>Edit ~/.m2/settings.xml:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>&lt;mirror&gt;
+  &lt;id&gt;aliyunmaven&lt;/id&gt;
+  &lt;mirrorOf&gt;*&lt;/mirrorOf&gt;
+  &lt;name&gt;Aliyun Maven&lt;/name&gt;
+  &lt;url&gt;https://maven.aliyun.com/repository/public&lt;/url&gt;
+&lt;/mirror&gt;</code></pre>
+                </div>
+                
+                <p>Build project:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>mvn clean install</code></pre>
+                </div>
+                
+                <p>Secondary Mirror: USTC (check https://mirrors.ustc.edu.cn/)</p>
+            </section>
+            
+            <section id="go">
+                <h2>Go Modules</h2>
+                <p>Primary Mirror: Aliyun</p>
+                
+                <p>Set GOPROXY:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>export GOPROXY=https://mirrors.aliyun.com/goproxy/</code></pre>
+                </div>
+                
+                <p>Install dependencies:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>go get package-name</code></pre>
+                </div>
+                
+                <p>Secondary Mirror: goproxy.cn (https://goproxy.cn)</p>
+            </section>
+            
+            <section id="crates">
+                <h2>Crates.io</h2>
+                <p>Primary Mirror: USTC</p>
+                
+                <p>Edit ~/.cargo/config.toml:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>[source.crates-io]
+replace-with = 'ustc'
+[source.ustc]
+registry = "sparse+https://mirrors.ustc.edu.cn/crates.io-index/"</code></pre>
+                </div>
+                
+                <p>Install crates:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>cargo build</code></pre>
+                </div>
+                
+                <p>Secondary Mirror: Tsinghua (sparse+https://mirrors.tuna.tsinghua.edu.cn/crates.io-index/)</p>
+            </section>
+            
+            <section id="homebrew">
+                <h2>Homebrew</h2>
+                <p>Primary Mirror: Tsinghua University</p>
+                
+                <p>Install Homebrew:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>git clone https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/install.git
+cd install
+/bin/bash install.sh</code></pre>
+                </div>
+                
+                <p>Replace homebrew-core:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>git -C "$(brew --repo)/Library/Taps/homebrew/homebrew-core" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git</code></pre>
+                </div>
+                
+                <p>Replace homebrew-cask:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>git -C "$(brew --repo)/Library/Taps/homebrew/homebrew-cask" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git</code></pre>
+                </div>
+                
+                <p>Set bottle domain (add to ~/.zshrc):</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+source ~/.zshrc</code></pre>
+                </div>
+                
+                <p>Update and install:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>brew update
+brew install package-name</code></pre>
+                </div>
+                
+                <p>Secondary Mirror: USTC (Core: https://mirrors.ustc.edu.cn/homebrew-core.git, Cask: https://mirrors.ustc.edu.cn/homebrew-cask.git, Bottles: https://mirrors.ustc.edu.cn/homebrew-bottles)</p>
+            </section>
+            
+            <section id="android">
+                <h2>Android SDK</h2>
+                <p>Primary Mirror: Tsinghua University</p>
+                
+                <p>Edit SDK Manager settings in Android Studio (Settings > Android SDK > Edit):</p>
+                <p>Set custom mirror:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>https://mirrors.tuna.tsinghua.edu.cn/android/</code></pre>
+                </div>
+                
+                <p>Update SDK:</p>
+                <p>Select components in SDK Manager and click Apply.</p>
+                
+                <p>Secondary Mirror: USTC (https://mirrors.ustc.edu.cn/android/)</p>
+            </section>
+            
+            <section id="gradle">
+                <h2>Gradle</h2>
+                <p>Primary Mirror: Aliyun</p>
+                
+                <p>Edit project-level build.gradle:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>repositories {
+    maven { url 'https://maven.aliyun.com/repository/public' }
+    mavenCentral()
+}</code></pre>
+                </div>
+                
+                <p>Sync and build:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>gradle build</code></pre>
+                </div>
+                
+                <p>Secondary Mirror: Tencent (https://mirrors.tencent.com/repository/maven-public/)</p>
+            </section>
+            
+            <section id="apt">
+                <h2>APT</h2>
+                <p>Primary Mirror: Tsinghua University</p>
+                
+                <p>Backup default source:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak</code></pre>
+                </div>
+                
+                <p>Edit /etc/apt/sources.list (e.g., Ubuntu 20.04):</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse</code></pre>
+                </div>
+                
+                <p>Update and install:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>sudo apt update
+sudo apt install package-name</code></pre>
+                </div>
+                
+                <p>Secondary Mirror: USTC (https://mirrors.ustc.edu.cn/ubuntu/)</p>
+            </section>
+            
+            <section id="yum">
+                <h2>Yum/DNF</h2>
+                <p>Primary Mirror: Tsinghua University</p>
+                
+                <p>Backup default source:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>sudo cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak</code></pre>
+                </div>
+                
+                <p>Edit /etc/yum.repos.d/CentOS-Base.repo (e.g., CentOS 8):</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>[base]
+name=CentOS-$releasever - Base
+baseurl=https://mirrors.tuna.tsinghua.edu.cn/centos/$releasever/os/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-8</code></pre>
+                </div>
+                
+                <p>Update and install:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>sudo dnf update
+sudo dnf install package-name</code></pre>
+                </div>
+                
+                <p>Secondary Mirror: Aliyun (https://mirrors.aliyun.com/centos/)</p>
+            </section>
+            
+            <section id="composer">
+                <h2>Composer</h2>
+                <p>Primary Mirror: Aliyun</p>
+                
+                <p>Configure Composer:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/</code></pre>
+                </div>
+                
+                <p>Install packages:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>composer install</code></pre>
+                </div>
+                
+                <p>Secondary Mirror: Tencent (https://mirrors.tencent.com/composer/)</p>
+            </section>
+            
+            <section id="nuget">
+                <h2>NuGet</h2>
+                <p>Primary Mirror: Tsinghua University</p>
+                
+                <p>Edit NuGet.Config (e.g., ~/.nuget/NuGet/):</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>&lt;packageSources&gt;
+  &lt;add key="tsinghua" value="https://mirrors.tuna.tsinghua.edu.cn/nuget/" /&gt;
+&lt;/packageSources&gt;</code></pre>
+                </div>
+                
+                <p>Restore packages:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>dotnet restore</code></pre>
+                </div>
+                
+                <p>Secondary Mirror: USTC (https://mirrors.ustc.edu.cn/nuget/)</p>
+            </section>
+            
+            <section id="pacman">
+                <h2>Pacman</h2>
+                <p>Primary Mirror: Tsinghua University</p>
+                
+                <p>Edit /etc/pacman.d/mirrorlist:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch</code></pre>
+                </div>
+                
+                <p>Update and install:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>sudo pacman -Syu
+sudo pacman -S package-name</code></pre>
+                </div>
+                
+                <p>Secondary Mirror: USTC (https://mirrors.ustc.edu.cn/archlinux/)</p>
+            </section>
+            
+            <section id="helm">
+                <h2>Helm</h2>
+                <p>Primary Mirror: Aliyun</p>
+                
+                <p>Add Aliyun repository:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>helm repo add aliyun https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts</code></pre>
+                </div>
+                
+                <p>Update and install:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>helm repo update
+helm install my-release aliyun/chart-name</code></pre>
+                </div>
+                
+                <p>Secondary Mirror: None widely recommended; use internal mirrors if needed.</p>
+            </section>
+            
+            <section id="conan">
+                <h2>Conan</h2>
+                <p>Primary Mirror: USTC</p>
+                
+                <p>Edit ~/.conan/conan.conf:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>[remotes]
+ustc = https://mirrors.ustc.edu.cn/conan/</code></pre>
+                </div>
+                
+                <p>Install packages:</p>
+                <div class="code-card">
+                    <button class="copy-btn">Copy</button>
+                    <pre><code>conan install package-name</code></pre>
+                </div>
+                
+                <p>Secondary Mirror: Aliyun (self-hosted, check https://mirrors.aliyun.com/)</p>
+            </section>
+        </div>
+        
+        <div class="sidebar">
+            <div class="nav-title">Package Managers</div>
+            <ul class="nav-menu">
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#pip">pip</a></li>
+                <li><a href="#npm">npm</a></li>
+                <li><a href="#docker">Docker</a></li>
+                <li><a href="#rubygems">RubyGems</a></li>
+                <li><a href="#maven">Maven Central</a></li>
+                <li><a href="#go">Go Modules</a></li>
+                <li><a href="#crates">Crates.io</a></li>
+                <li><a href="#homebrew">Homebrew</a></li>
+                <li><a href="#android">Android SDK</a></li>
+                <li><a href="#gradle">Gradle</a></li>
+                <li><a href="#apt">APT</a></li>
+                <li><a href="#yum">Yum/DNF</a></li>
+                <li><a href="#composer">Composer</a></li>
+                <li><a href="#nuget">NuGet</a></li>
+                <li><a href="#pacman">Pacman</a></li>
+                <li><a href="#helm">Helm</a></li>
+                <li><a href="#conan">Conan</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Highlight active section in the menu
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            // Add click event to smooth scroll
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Highlight active section on scroll
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = '#' + section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+            
+            // Copy button functionality
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const codeBlock = this.nextElementSibling;
+                    const codeText = codeBlock.textContent;
+                    
+                    navigator.clipboard.writeText(codeText).then(() => {
+                        // Change button text temporarily
+                        const originalText = this.textContent;
+                        this.textContent = 'Copied!';
+                        this.classList.add('copied');
+                        
+                        // Reset button text after 2 seconds
+                        setTimeout(() => {
+                            this.textContent = originalText;
+                            this.classList.remove('copied');
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy text: ', err);
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
