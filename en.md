@@ -20,19 +20,25 @@ Primary Mirror: Tsinghua University
     Secondary Mirror: Aliyun (https://mirrors.aliyun.com/pypi/simple/)
 
 npm
-Primary Mirror: Taobao  
+Primary Mirror: npmmirror  
 
-    Set npm to use Taobao’s mirror:  
+    Set npm to use npmmirror.com registry (formerly known as the Taobao npm mirror):  
     bash
 
-    npm config set registry https://registry.npm.taobao.org/
+    npm config set registry https://registry.npmmirror.com
 
     Install packages:  
     bash
 
     npm install package-name
 
-    Secondary Mirror: Tencent (https://mirrors.tencent.com/npm/)
+    Alternatively, use cnpm wherever npm is needed. To install cnpm globally using the new mirror:
+
+    npm install -g cnpm --registry=https://registry.npmmirror.com
+
+    Then you can install any package like:
+
+    cnpm install express
 
 Docker
 Primary Mirror: DaoCloud  
